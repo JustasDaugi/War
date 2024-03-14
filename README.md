@@ -7,8 +7,10 @@ Deck:
     Define suits and ranks seperately,
     Shuffle cards.
 
-Split Deck:
-    Divide list_of_hands in half for each player.
+Player:
+    Divide list_of_hands in two parts
+    Assign a half to each of the players
+
 
 Start game:
     Loop:
