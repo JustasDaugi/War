@@ -24,7 +24,26 @@ class Deck:
     def __str__(self):
         deck_str = '.'.join([str(card) for card in self.cards])
         return f"Deck: [{deck_str}]"
-    
+
+
+
+class Player:
+    def __init__(self, deck):
+        self.deck = deck
+        self.player1 = []
+        self.player2 = []
+
+    def split_deck(self):
+        self.player1 = self.deck.cards[:26]
+        self.player2 = self.deck.cards[26:]
+
+    def __str__(self):
+        player1_cards = ', '.join(str(card) for card in self.player1)
+        player2_cards = ', '.join(str(card) for card in self.player2)
+        return f"Player1: [{player1_cards}]\nPlayer2: [{player2_cards}]"
+
 deck = Deck()
 deck.shuffle()
-print(deck)
+player = Player(deck)
+player.split_deck()
+print(player)
