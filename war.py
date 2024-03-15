@@ -1,5 +1,5 @@
 import random
-
+from constants import ranks, suits
 class Card:
     def __init__(self, rank, suit):
         self.rank = rank
@@ -11,8 +11,6 @@ class Card:
 class Deck:
     def __init__(self):
         self.cards = []
-        suits = ["Hearts", "Diamonds", "Clubs", "Spades"]
-        ranks = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
 
         for suit in suits:
             for rank in ranks:
@@ -32,18 +30,72 @@ class Player:
         self.deck = deck
         self.player1 = []
         self.player2 = []
-
+            
     def split_deck(self):
         self.player1 = self.deck.cards[:26]
         self.player2 = self.deck.cards[26:]
 
-    def __str__(self):
-        player1_cards = ', '.join(str(card) for card in self.player1)
-        player2_cards = ', '.join(str(card) for card in self.player2)
-        return f"Player1: [{player1_cards}]\nPlayer2: [{player2_cards}]"
+class Game:
+    def __init__(self, player1, player2):
+        self.player1 = player1
+        self.player2 = player2
 
-deck = Deck()
-deck.shuffle()
-player = Player(deck)
-player.split_deck()
-print(player)
+
+    def show_cards(self, card1, card2):
+        print(f"Player 1 card: {card1} - Player 2 card: {card2}")
+
+    def play_round(self):
+        if not self.player1 or not self.player2:
+            return  
+
+        card1 = self.player1.pop(0)
+        card2 = self.player2.pop(0)
+
+        rank1 = ranks.index(card1.rank)
+        rank2 = ranks.index(card2.rank)
+
+        self.show_cards(card1, card2)
+
+        if rank1 > rank2:
+            check_win = "Player 1 wins this round"
+            print(check_win)
+            return check_win
+        elif rank2 > rank1:
+            check_win = "Player 2 wins this round"
+            print(check_win)    
+            return check_win
+        else:
+            tie = f"{card1} and {card2} are equal. It's a tie!"
+            print(tie)
+            return tie
+    
+    def play_game(self):
+        while len(self.player1) != 0 and len(self.player2) != 0:
+            self.play_round()
+            next_round = input("Press enter to play the next round or 'q' to quit: ")
+            
+
+            
+            if len(self.player1) == 0:
+                print("Player 2 wins!")
+                break
+
+            if len(self.player2) == 0:
+                print("Player 1 wins!")
+                break
+            
+            if next_round != 'q':
+                continue
+
+
+    def start_game():
+        deck = Deck()
+        deck.shuffle()
+
+        player = Player(deck)
+        player.split_deck()
+
+        game = Game(player.player1, player.player2)
+        game.play_game()
+
+Game.start_game()
