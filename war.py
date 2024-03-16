@@ -70,22 +70,28 @@ class Game:
             return tie
     
     def play_game(self):
-        while len(self.player1) != 0 and len(self.player2) != 0:
+        rounds = 0
+        while rounds <= 20:
+            if rounds == 5:
+                if len(self.player1) > len(self.player2):
+                    print("Player 1 wins!")
+                    break
+                else:
+                    print("Player 2 wins")
+                    break
+                
             self.play_round()
             next_round = input("Press enter to play the next round or 'q' to quit: ")
+            rounds += 1
+
             
 
             
-            if len(self.player1) == 0:
-                print("Player 2 wins!")
-                break
 
-            if len(self.player2) == 0:
-                print("Player 1 wins!")
-                break
+
+
             
-            if next_round != 'q':
-                continue
+
 
 
     def start_game():
