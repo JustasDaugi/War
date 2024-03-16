@@ -50,7 +50,6 @@ class Game:
 
         card1 = self.player1.pop(0)
         card2 = self.player2.pop(0)
-        cards_in_play = [card1, card2]
 
         rank1 = ranks.index(card1.rank)
         rank2 = ranks.index(card2.rank)
@@ -59,12 +58,14 @@ class Game:
 
         if rank1 > rank2:
             check_win = "Player 1 wins this round"
-            self.player1.append(cards_in_play)
+            self.player1.append(card1)
+            self.player1.append(card2)
             print(check_win)
             return check_win
         elif rank2 > rank1:
             check_win = "Player 2 wins this round"
-            self.player2.append(cards_in_play)
+            self.player2.append(card1)
+            self.player2.append(card2)
             print(check_win)    
             return check_win
         else:
