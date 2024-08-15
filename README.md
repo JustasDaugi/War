@@ -1,21 +1,5 @@
-Cards:
-    Define class attributes for rank and suit,
-    Create a method to display rank and suit,
+Implementation of card game War.
 
-Deck:
-    Define an empty list to store cards,
-    Define suits and ranks seperately,
-    Shuffle cards.
+The objective of the game is to win all of the cards.
 
-Player:
-    Divide list_of_hands in two parts
-    Assign a half to each of the players
-
-
-Start game:
-    Loop:
-      Show last card of each players deck,
-      Check which rank is higher by rank list index,
-      Player1 has higher rank - takes Player2 card, keeps his card, current player card is added with player1 card(appended to player1 deck)
-      Player2 has higher rank - takes Player1 card, keeps his card, current player card is added with player1 card(appended to player2 deck)
-      
+The deck is divided evenly among the players, giving each a down stack. In unison, each player reveals the top card of their deck—this is a "battle"—and the player with the higher card takes both of the cards played and moves them to their stack. 
